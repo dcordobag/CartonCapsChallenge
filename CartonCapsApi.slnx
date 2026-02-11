@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CartonCapsApi/Referrals.Api.csproj" />
+  <Project Path="Referral.Application/Referrals.Application.csproj" Id="64ac87f0-5986-4c3e-a0fd-c5f87f2c5eb1" />
+  <Project Path="Referrals.Api.Tests/Referrals.Api.Tests.csproj" Id="d0e3bf6a-7e8f-4051-9ae7-8590326e3843" />
+  <Project Path="Referrals.Domain/Referrals.Domain.csproj" Id="a4f67c2c-7c9a-465b-a91c-0df334fe6f96" />
+  <Project Path="Referrals.Infrastructure/Referrals.Infrastructure.csproj" Id="b5f39a9f-d570-4755-a866-6cabf1c2f43a" />
+</Solution>

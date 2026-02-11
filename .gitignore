@@ -1,0 +1,114 @@
+###############################################################################
+# .NET / Visual Studio / Rider / VS Code
+###############################################################################
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+
+# Visual Studio Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# Rider / JetBrains
+.idea/
+*.sln.iml
+
+# DotCover / ReSharper
+*.dotCover
+_ReSharper*/
+*.resharper
+*.Resharper.user
+
+# Test results / coverage
+[Tt]est[Rr]esult*/
+*.trx
+coverage/
+coverage.*.xml
+coverage.*.json
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/packages/
+.nuget/http-cache/
+.nuget/plugins-cache/
+# If you use packages.lock.json and want it committed, REMOVE this line:
+packages.lock.json
+
+# Publish / artifacts
+**/[Pp]ublishOutput*/
+**/[Pp]ublished*/
+**/AppPackages/
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+
+# ASP.NET / IIS / logs
+*.log
+*.tmp
+*.temp
+*.pdb
+*.cache
+*.swp
+*.swo
+
+# Local settings / secrets
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
+secrets.json
+*.secrets
+.env
+.env.*
+
+# User-specific files
+*.rsuser
+*.sln.DotSettings.user
+
+# OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+###############################################################################
+# Optional: Azure Functions / local tooling
+###############################################################################
+local.settings.json
+
+###############################################################################
+# Optional: Containers
+###############################################################################
+**/docker-compose.override.yml
+
+###############################################################################
+# Optional: node (if you have SPA projects)
+###############################################################################
+node_modules/
+dist/
+out/
+.next/

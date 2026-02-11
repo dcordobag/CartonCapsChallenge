@@ -1,0 +1,96 @@
+@CartonCapsApi_HostAddress = http://localhost:5053
+@MockUserId = user_123
+@IdempotencyKey = 8c4b8c5e-7c3a-4f5a-a08c-6d8b6a9d2c11
+@Token = dl_4ae9d0e1f1b34c66b6b0a1
+@ReferralCode = XY7G4D
+@VendorSignature = test_secret
+
+###
+# Create a shareable deferred deep link for a referral
+POST {{CartonCapsApi_HostAddress}}/v1/referrals/links
+Accept: application/json
+Content-Type: application/json
+X-Mock-UserId: {{MockUserId}}
+Idempotency-Key: {{IdempotencyKey}}
+
+{
+  "referralCode": "{{ReferralCode}}",
+  "channel": "sms",
+  "locale": "en-US",
+  "campaign": "invite_friends",
+  "destination": "signup",
+  "client": {
+    "platform": "ios",
+    "appVersion": "7.12.0"
+  }
+}
+
+###
+# List referrals created by the current user (no filters)
+GET {{CartonCapsApi_HostAddress}}/v1/referrals
+Accept: application/json
+X-Mock-UserId: {{MockUserId}}
+
+###
+# List referrals with filters (status, limit, cursor)
+GET {{CartonCapsApi_HostAddress}}/v1/referrals?status=pending&limit=20&cursor=
+Accept: application/json
+X-Mock-UserId: {{MockUserId}}
+
+###
+# Get referral counts by status
+GET {{CartonCapsApi_HostAddress}}/v1/referrals/summary
+Accept: application/json
+X-Mock-UserId: {{MockUserId}}
+
+###
+# Resolve deferred deep-link token into onboarding instructions (public)
+POST {{CartonCapsApi_HostAddress}}/v1/referrals/resolve
+Accept: application/json
+Content-Type: application/json
+
+{
+  "token": "{{Token}}",
+  "device": {
+    "deviceId": "device_abc_123",
+    "platform": "android",
+    "appVersion": "7.12.0"
+  }
+}
+
+###
+# Resolve with an unknown token (should return 404)
+POST {{CartonCapsApi_HostAddress}}/v1/referrals/resolve
+Accept: application/json
+Content-Type: application/json
+
+{
+  "token": "dl_unknown_token",
+  "device": {
+    "deviceId": "device_abc_123",
+    "platform": "ios",
+    "appVersion": "7.12.0"
+  }
+}
+
+###
+# Receive attribution events from the deferred deep-link vendor (webhook)
+POST {{CartonCapsApi_HostAddress}}/v1/webhooks/deeplink/events
+Accept: application/json
+Content-Type: application/json
+X-Vendor-Signature: {{VendorSignature}}
+
+{
+  "eventType": "install",
+  "token": "{{Token}}",
+  "occurredAt": "2026-02-10T00:00:00Z",
+  "deviceIdHash": "sha256:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+  "metadata": {
+    "ip": "203.0.113.10",
+    "userAgent": "ExampleUA/1.0"
+  }
+}
+###
+# Get referral counts by status
+GET {{CartonCapsApi_HostAddress}}/health
+Accept: application/json
